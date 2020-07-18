@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import initialData from "./initial-data";
+import Column from "./Column/Column";
 
 class App extends Component {
   state = initialData;
@@ -9,7 +10,7 @@ class App extends Component {
       const column = this.state.columns[columnId];
       const tasks = column.taskIds.map((taskId) => this.state.tasks[taskId]);
 
-      return column.title;
+      return <Column key={column.id} column={column} tasks={tasks} />;
     });
   }
 }
