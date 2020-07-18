@@ -1,13 +1,8 @@
 import React from "react";
 import "./App.css";
-import Knight from "./components/Knight/Knight";
 
 function App() {
-  return (
-    <div className="App">
-      <Knight />
-    </div>
-  );
+  return <div className="App">memes</div>;
 }
 
 export default App;
