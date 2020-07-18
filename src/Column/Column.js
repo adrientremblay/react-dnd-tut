@@ -1,15 +1,28 @@
 import React from "react";
 import styled from "styled-components";
+import Task from "../Task/Task";
 
-const Container = styled.div``;
-const Title = styled.h3``;
-const TaskList = styled.div``;
+const Container = styled.div`
+  margin: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+`;
+const Title = styled.h3`
+  padding: 8px;
+`;
+const TaskList = styled.div`
+  padding: 8px;
+`;
 
 const column = (props) => {
   return (
     <Container>
       <Title>{props.column.title}</Title>
-      <TaskList>Tasks go here</TaskList>
+      <TaskList>
+        {props.tasks.map((task) => (
+          <Task key={task.id} task={task} />
+        ))}
+      </TaskList>
     </Container>
   );
 };
