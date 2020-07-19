@@ -17,24 +17,20 @@ class App extends Component {
       return;
 
     const column = this.state.columns[source.droppableId];
-    const newTasksIds = Array.from(column.taskIds);
-    newTasksIds.splice(source.index, 1);
-    newTasksIds.splice(destination.index, 0, draggableId);
+    const newTasksIds = Array.from(column.taskIds); // new task id array
+    newTasksIds.splice(source.index, 1); // remove from source index
+    newTasksIds.splice(destination.index, 0, draggableId); // add to destination index
 
     const newColumn = {
       ...column,
       taskIds: newTasksIds,
     };
 
-    const newState = {
-      ...this.state,
+    this.setState({
       columns: {
-        ...this.state.columns,
         [newColumn.id]: newColumn,
       },
-    };
-
-    this.setState(newState);
+    });
   };
 
   render() {
