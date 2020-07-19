@@ -6,8 +6,35 @@ import { DragDropContext } from "react-beautiful-dnd";
 class App extends Component {
   state = initialData;
 
-  dragEndHandler = () => {
-    // TODO
+  dragEndHandler = (result) => {
+    const { destination, source, draggableId } = result;
+
+    if (
+      !destination ||
+      (destination.droppableId === source.droppableId &&
+        destination.index === source.index)
+    )
+      return;
+
+    const column = this.state.columns[source.droppableId];
+    const newTasksIds = Array.from(column.taskIds);
+    newTasksIds.splice(source.index, 1);
+    newTasksIds.splice(destination.index, 0, draggableId);
+
+    const newColumn = {
+      ...column,
+      taskIds: newTasksIds,
+    };
+
+    const newState = {
+      ...this.state,
+      columns: {
+        ...this.state.columns,
+        [newColumn.id]: newColumn,
+      },
+    };
+
+    this.setState(newState);
   };
 
   render() {
